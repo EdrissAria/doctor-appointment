@@ -1,11 +1,10 @@
 import { Link, Navigate, Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
-const Layout = () => {
+const Layout: React.FC = () => {
   return (
     <>
-      <header>
-        <h1>this is the header</h1>
-      </header>
+      <Header />
       <Outlet />
       <footer>
         <h1>this is the footer</h1>
