@@ -1,14 +1,13 @@
-import { Link, Navigate, Outlet } from "react-router-dom";
-import Header from "../components/Header";
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Layout: React.FC = () => {
   return (
     <>
       <Header />
       <Outlet />
-      <footer>
-        <h1>this is the footer</h1>
-      </footer>
+      <Footer />
     </>
   );
 };

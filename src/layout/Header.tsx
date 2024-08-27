@@ -1,16 +1,13 @@
-import { Container, Group, Text, Button, Flex, useMantineTheme} from "@mantine/core";
+import { Container, Group, Text, Button, Flex, Image} from "@mantine/core";
 import { Link } from "react-router-dom";
-import {IconHeartbeat} from "@tabler/icons-react"
 
 const Header: React.FC = () => {
-  const theme = useMantineTheme();
   return (
     <div style={{ backgroundColor: "#FFC278", padding: "15px 0" }}>
       <Container size="md" >
         <Flex mih={50} justify="space-between" align="center" direction="row">
           <Group gap={4}>
-            <IconHeartbeat color="teal"/>
-            <Text size="sm" style={{color: theme.colors.teal[9]}}>Medical lab</Text>
+            <Image src="images/logo.png" w={50}/>
           </Group>
 
           <Group gap={50}>
@@ -25,7 +22,7 @@ const Header: React.FC = () => {
             </Text>
             <Button
               radius="xl"
-              style={{background: theme.colors.teal[9]}}
+              style={{backgroundColor: "#006D64"}}
               component={Link}
               to="/book-appointment"
             >
