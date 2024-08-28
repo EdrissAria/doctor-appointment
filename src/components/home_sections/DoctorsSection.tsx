@@ -4,19 +4,25 @@ import DoctorCard from '../DoctorCard';
 
 const doctors = [
   {
-    name: 'Dr. Cameron Williamson',
-    title: 'Neurosurgeon',
-    image: 'images/edriss.jpg',
+    id: 1,
+    name: 'Dr. John Doe',
+    specialty: 'Cardiologist',
+    description: 'Expert in heart-related issues.',
+    imageUrl: 'images/edriss.jpg', 
   },
   {
-    name: 'Dr. Brooklyn Simmons',
-    title: 'Dental Surgeon',
-    image: 'images/edriss.jpg',
+    id: 2,
+    name: 'Dr. Jane Smith',
+    specialty: 'Dermatologist',
+    description: 'Specialist in skin problems.',
+    imageUrl: 'images/edriss.jpg',
   },
   {
-    name: 'Dr. Leslie Alexander',
-    title: 'Medicine',
-    image: 'images/edriss.jpg',
+    id: 3,
+    name: 'Dr. Emily Johnson',
+    specialty: 'Pediatrician',
+    description: 'Caring for children’s health.',
+    imageUrl: 'images/edriss.jpg',
   },
 ];
 
@@ -42,7 +48,12 @@ const MeetDoctorsSection: React.FC = () => {
       >
         {doctors.map((doctor, index) => (
           <Carousel.Slide key={index}>
-            <DoctorCard name={doctor.name} title={doctor.title} image={doctor.image} />
+            <DoctorCard 
+              name={doctor.name}
+              specialty={doctor.specialty}
+              description={doctor.description}
+              imageUrl={doctor.imageUrl}
+            />
           </Carousel.Slide>
         ))}
       </Carousel>

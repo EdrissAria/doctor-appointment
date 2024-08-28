@@ -28,7 +28,7 @@ const AboutHospitalSection: React.FC = () => {
         </Group>
 
         <Group>
-          <Title order={2} mb={10}>
+          <Title order={1} mb={10}>
             About Our Hospital
           </Title>
           <Text mb={10} color="#5c5f66">
