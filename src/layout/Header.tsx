@@ -9,7 +9,7 @@ const Header: React.FC = () => {
       <Container size="md">
         <Flex mih={50} justify="space-between" align="center" direction="row">
           <Group gap={4}>
-            <Image src="images/logo.png" w={50}/>
+            <Image src="/images/logo.png" w={50}/>
           </Group>
 
           <Group gap={50}>
