@@ -15,7 +15,7 @@ type ServiceCardProps = {
 const ServiceCard: React.FC<ServiceCardProps> = ({service, index}) => {
   return (
     <Grid.Col span={6} key={index}>
-      <Card shadow="sm" p="lg" radius="md">
+      <Card shadow="sm" h={200} p="lg" radius="md">
         <Text size="xl">{service.icon}</Text>
         <Text size="lg" mt="md">
           {service.title}

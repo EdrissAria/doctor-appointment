@@ -27,7 +27,7 @@ const services = [
 
 const HospitalServiceSection: React.FC = () => {
   return (
-    <Container size="md" mt="xl" py={50}>
+    <Container size="xl" p={50} style={{ backgroundColor: "#e8f8f5" }}>
       <Grid>
         <Grid.Col span={6}>
           <Text size="sm" color="teal">We provide</Text>
@@ -46,7 +46,7 @@ const HospitalServiceSection: React.FC = () => {
             <List.Item>Cardiology</List.Item>
             <List.Item>Radiologists</List.Item>
           </List>
-          <Button variant="light" mt="lg" radius="xl">All service</Button>
+          <Button variant="light" mt="lg" radius="xl" color='#006D64'>All service</Button>
         </Grid.Col>
         
         <Grid.Col span={6}>

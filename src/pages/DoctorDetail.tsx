@@ -1,19 +1,52 @@
-import React from 'react';
-import { Container, Image, Text, Title, Group, Badge, Button, Grid, Paper, Stack } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Container, Image, Text, Title, Group, Badge, Button, Grid, Paper, Stack, Loader, Center } from '@mantine/core';
 import { IconMail, IconPhone, IconAward, IconStethoscope } from '@tabler/icons-react';
+import Doctor from '../types';
 
-const DoctorDetailsPage: React.FC = () => {
-  const doctor = {
-    name: 'Dr. John Doe',
-    specialty: 'Cardiology',
-    description: 'Dr. John Doe is a highly skilled cardiologist with over 20 years of experience in treating complex heart conditions. He is committed to providing the highest standard of care to his patients.',
-    imageUrl: '/images/edriss.jpg',
-    email: 'john.doe@example.com',
-    phone: '+123456789',
-    experience: 20,
-    qualifications: ['MBBS', 'MD', 'FACC'],
-    awards: ['Best Doctor 2020', 'Top Cardiologist 2019'],
-  };
+const DoctorDetails: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [doctor, setDoctor] = useState<Doctor | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    axios
+      .get<Doctor>(`http://localhost:3333/api/doctors/${id}`)
+      .then((response) => {
+        setDoctor(response.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError('Failed to fetch doctor details.');
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return (
+      <Center style={{ height: '100vh' }}>
+        <Loader />
+      </Center>
+    );
+  }
+
+  if (error) {
+    return (
+      <Center style={{ height: '100vh' }}>
+        <Text color="red">{error}</Text>
+      </Center>
+    );
+  }
+
+  if (!doctor) {
+    return (
+      <Center style={{ height: '100vh' }}>
+        <Text color="dimmed">Doctor not found</Text>
+      </Center>
+    );
+  }
 
   return (
     <Container size="md" py="xl">
@@ -31,9 +64,9 @@ const DoctorDetailsPage: React.FC = () => {
                 </Text>
               </div>
 
-              <Text mt="md">{doctor.description}</Text>
+              <Text>{doctor.description}</Text>
 
-              <Group mt="lg" gap="xl">
+              <Group mt="sm" gap="xl">
                 <Button
                   variant="outline"
                   leftSection={<IconMail size={16} />}
@@ -90,4 +123,4 @@ const DoctorDetailsPage: React.FC = () => {
   );
 };
 
-export default DoctorDetailsPage;
+export default DoctorDetails;

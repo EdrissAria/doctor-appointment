@@ -18,7 +18,7 @@ import {
 
 const Footer: React.FC = () => {
   return (
-    <footer style={{ backgroundColor: "#f9f9f9", padding: "2rem 0" }}>
+    <footer style={{ backgroundColor: "#f8f9f9", padding: "2rem 0" }}>
       <Container>
         <Grid>
           <Grid.Col span={3} mb={3}>
