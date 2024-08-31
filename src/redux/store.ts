@@ -1,11 +1,19 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { createStore, Store } from 'redux';
+import { persistStore, persistReducer, Persistor } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { appointmentsReducer } from './reducers/appointmentsReducer';
+import { AppointmentsState, AppointmentsAction } from '../types';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
 
-export const store = configureStore({
-    reducer: {
-        
-    }
-})
+const persistedReducer = persistReducer<AppointmentsState, AppointmentsAction>(
+  persistConfig,
+  appointmentsReducer
+);
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export const store: Store<AppointmentsState, AppointmentsAction> = createStore(persistedReducer,composeWithDevTools());
+export const persistor: Persistor = persistStore(store);
