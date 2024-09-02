@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { Card, Image, Text, Group, ActionIcon, Anchor } from "@mantine/core";
-import { IconHeartFilled, IconHeartBroken } from "@tabler/icons-react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavoriteDoctor } from "../redux/actions/favoriteActions";
+import { Card, Image, Text, Button, Anchor } from "@mantine/core";
+import { IconStar, IconStarFilled } from "@tabler/icons-react";
 
 interface DoctorCardProps {
   id: number;
@@ -13,59 +15,54 @@ interface DoctorCardProps {
 
 const DoctorCard: React.FC<DoctorCardProps> = ({
   id,
-  showFavIcon,
   name,
   specialty,
   description,
   imageUrl,
+  showFavIcon,
 }) => {
-  const [favorited, setFavorited] = useState(false);
+  const dispatch = useDispatch();
+  const favoriteDoctors = useSelector(
+    (state: any) => state.favoriteDoctors.favoriteDoctors
+  );
 
-  const toggleFavorite = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setFavorited((prev) => !prev);
+  const isFavorite = favoriteDoctors.includes(id);
+
+  const handleFavoriteToggle = () => {
+    dispatch(toggleFavoriteDoctor(id));
   };
 
   return (
-    <Card shadow="sm" padding="lg">
-      <Card.Section style={{ position: "relative" }}>
-        <Image src={imageUrl} height={240} alt={name} />
-        {showFavIcon ? (
-          <ActionIcon
-            variant="transparent"
-            color={favorited ? "red" : "gray"}
-            onClick={toggleFavorite}
-            title={favorited ? "Unfavorite" : "Favorite"}
-            style={{
-              position: "absolute",
-              top: 10,
-              right: 10,
-              zIndex: 1,
-            }}
-          >
-            {favorited ? (
-              <IconHeartFilled size={104} />
-            ) : (
-              <IconHeartBroken size={104} />
-            )}
-          </ActionIcon>
-        ) : (
-          ""
-        )}
-      </Card.Section>
+    <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Anchor underline="never" href={`/doctor/${id}`}>
-        <Group mt="md" mb="xs">
-          <div>
-            <Text>{name}</Text>
-            <Text size="sm" color="dimmed">
-              {specialty}
-            </Text>
-          </div>
-        </Group>
+        <Card.Section>
+          <Image src={imageUrl} height={240} alt={name} />
+        </Card.Section>
+
+        <Text size="lg" mt="md">
+          {name}
+        </Text>
         <Text size="sm" color="dimmed">
+          {specialty}
+        </Text>
+        <Text size="sm" mt="md">
           {description}
         </Text>
       </Anchor>
+      {showFavIcon && (
+        <Button
+          variant="outline"
+          color={isFavorite ? "yellow" : "gray"}
+          onClick={handleFavoriteToggle}
+          mt="md"
+          radius="xl"
+          leftSection={
+            isFavorite ? <IconStarFilled size={16} /> : <IconStar size={16} />
+          }
+        >
+          {isFavorite ? "Unfavorite" : "Favorite"}
+        </Button>
+      )}
     </Card>
   );
 };

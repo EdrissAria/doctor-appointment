@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Title, Paper, Text, Grid, Stack, Center } from '@mantine/core';
 import { IconCalendar, IconUser, IconPhone, IconMail } from '@tabler/icons-react';
-// import { RootState } from '../redux/store';
 import { Appointment } from '../types';
 
 const Profile: React.FC = () => {

@@ -11,7 +11,7 @@ import { isEmail, isNotEmpty, useForm } from "@mantine/form";
 import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../redux/actions/appointmentActions";
 import axios from "axios";
-import Doctor from "../types";
+import Doctor, { Appointment } from "../types";
 
 const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
   opened,
@@ -22,8 +22,8 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
   const dispatch = useDispatch();
   
-  // Get the list of appointments from the Redux store
-  const appointments = useSelector((state: any) => state.appointments);
+  const appointments: Appointment[] = useSelector((state: any) => state.appointments.appointments);
+
 
   useEffect(() => {
     axios

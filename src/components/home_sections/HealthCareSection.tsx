@@ -19,8 +19,7 @@ const HealthCareSection: React.FC = () => {
       >
         <Group
           style={{
-            width: "100%", 
-            textAlign: "center",
+            width: "100%",
           }}
         >
           <Text color="white" size="md" mb="sm">
