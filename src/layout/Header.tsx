@@ -18,10 +18,9 @@ const Header: React.FC = () => {
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [appointmentDrawerOpened, setAppointmentDrawerOpened] = useState(false);
   const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
-  const headerColor = "#FFC278";
 
   return (
-    <div style={{ backgroundColor: headerColor, padding: "15px 0" }}>
+    <div style={{ backgroundColor: "#FFC278", padding: "15px 0" }}>
       <Container size="md">
         <Flex mih={50} justify="space-between" align="center" direction="row">
           <Group gap={4}>
@@ -52,7 +51,7 @@ const Header: React.FC = () => {
                   <Text component={Link} size="xl" to="/doctors">
                     Doctors
                   </Text>
-                  <Text component={Link} size="xl" to="/doctors">
+                  <Text component={Link} size="xl" to="/profile">
                     Profile
                   </Text>
                   <Button

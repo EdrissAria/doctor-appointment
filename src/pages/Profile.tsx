@@ -5,7 +5,7 @@ import { IconCalendar, IconUser, IconPhone, IconMail } from '@tabler/icons-react
 import { Appointment } from '../types';
 
 const Profile: React.FC = () => {
-  const appointments = useSelector((state: any) => state.appointments); 
+  const appointments = useSelector((state: any) => state.appointments.appointments); 
 
   const isUpcoming = (timeSlot: string) => {
     if (!timeSlot) return false;
@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
       const now = new Date();
       const parts = timeSlot.split(' ');
       if (parts.length < 4) return false;
-      const [day, startTime, startPeriod, , endTime, endPeriod] = parts;
+      const [day, startTime, startPeriod,_] = parts;
   
       const appointmentDate = new Date();
       const dayIndex = daysOfWeek.indexOf(day);

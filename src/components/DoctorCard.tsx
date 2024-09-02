@@ -34,18 +34,22 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Anchor underline="never" href={`/doctor/${id}`}>
+      <Anchor
+        underline="never"
+        href={`/doctor/${id}`}
+        style={{ color: "inherit", textDecoration: "none" }}
+      >
         <Card.Section>
           <Image src={imageUrl} height={240} alt={name} />
         </Card.Section>
 
-        <Text size="lg" mt="md">
+        <Text size="lg" mt="md" style={{ color: "inherit" }}>
           {name}
         </Text>
         <Text size="sm" color="dimmed">
           {specialty}
         </Text>
-        <Text size="sm" mt="md">
+        <Text size="sm" mt="md" style={{ color: "inherit" }}>
           {description}
         </Text>
       </Anchor>
