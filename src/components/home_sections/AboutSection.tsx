@@ -36,7 +36,6 @@ const AboutHospitalSection: React.FC = () => {
             with specialized health science and auxiliary healthcare staff and
             medical equipment.
           </Text>
-
           <List
             spacing="md"
             size="lg"

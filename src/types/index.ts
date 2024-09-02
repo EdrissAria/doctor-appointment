@@ -9,6 +9,10 @@ export default interface Doctor {
   experience: number;
   qualifications: string[];
   awards: string[];
+  availability: {
+    day: string;
+    slots: string[];
+  }[];
 }
 
 export interface Appointment {
@@ -17,9 +21,8 @@ export interface Appointment {
   email: string;
   phone: string;
   description: string;
-  doctor: string;
+  doctor: Doctor;
   timeSlot: string;
-  date: Date | null
 }
 
 export interface AppointmentsState {

@@ -11,8 +11,18 @@ const HealthCareSection: React.FC = () => {
         height: "100vh",
       }}
     >
-      <Flex p={50} justify="space-between" align="center" direction="row">
-        <Group>
+      <Flex
+        p={50}
+        justify="space-between"
+        align="center"
+        direction={{ base: "column", sm: "row" }}
+      >
+        <Group
+          style={{
+            width: "100%", 
+            textAlign: "center",
+          }}
+        >
           <Text color="white" size="md" mb="sm">
             We work to take care of your smile
           </Text>
@@ -41,8 +51,8 @@ const HealthCareSection: React.FC = () => {
             </Button>
           </Group>
         </Group>
-        <Group>
-          <img src="images/doctor.png" width={500}></img>
+        <Group style={{ width: "100%", justifyContent: "center" }}>
+          <img src="images/doctor.png" width={500} style={{ maxWidth: "100%" }} />
         </Group>
       </Flex>
     </Box>
