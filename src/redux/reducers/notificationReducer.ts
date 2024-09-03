@@ -1,4 +1,5 @@
-import { SHOW_NOTIFICATION, HIDE_NOTIFICATION, NotificationActionTypes } from "../actions/notificationActions";
+import { HIDE_NOTIFICATION, SHOW_NOTIFICATION } from "../../types";
+import { NotificationActionTypes } from "../actions/notificationActions";
 
 interface NotificationState {
   visible: boolean;

@@ -52,8 +52,10 @@ const Header: React.FC = () => {
                     onClick={() => {
                       scrollTo({ y: 2300 });
                     }}
+                    component={Link}
                     style={{ cursor: "pointer" }}
                     size="xl"
+                    to="/"
                   >
                     Blog
                   </Text>
@@ -61,8 +63,10 @@ const Header: React.FC = () => {
                     onClick={() => {
                       scrollTo({ y: 1600 });
                     }}
+                    component={Link}
                     style={{ cursor: "pointer" }}
                     size="xl"
+                    to="/"
                   >
                     Doctors
                   </Text>
@@ -91,8 +95,10 @@ const Header: React.FC = () => {
                 onClick={() => {
                   scrollTo({ y: 2300 });
                 }}
+                component={Link}
                 style={{ cursor: "pointer" }}
                 size="sm"
+                to="/"
               >
                 Blog
               </Text>
@@ -100,8 +106,10 @@ const Header: React.FC = () => {
                 onClick={() => {
                   scrollTo({ y: 1600 });
                 }}
+                component={Link}
                 style={{ cursor: "pointer" }}
                 size="sm"
+                to="/"
               >
                 Doctors
               </Text>

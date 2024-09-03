@@ -68,7 +68,6 @@ const Footer: React.FC = () => {
             <br />
           </Grid.Col>
 
-          {/* More Links */}
           <Grid.Col span={3} mb={2}>
             <Title order={5} mb="sm">
               More
@@ -91,7 +90,6 @@ const Footer: React.FC = () => {
             <br />
           </Grid.Col>
 
-          {/* Newsletter Signup */}
           <Grid.Col span={3} mb={4}>
             <Title order={5} mb="sm">
               Newsletter

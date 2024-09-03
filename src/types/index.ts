@@ -33,3 +33,18 @@ export type AppointmentsAction = {
   type: string;
   payload: Appointment;
 }
+
+export const SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
+export const HIDE_NOTIFICATION = "HIDE_NOTIFICATION";
+
+export interface ShowNotificationAction {
+  type: typeof SHOW_NOTIFICATION;
+  payload: {
+    message: string;
+    type: "success" | "error";
+  };
+}
+
+export interface HideNotificationAction {
+  type: typeof HIDE_NOTIFICATION;
+}

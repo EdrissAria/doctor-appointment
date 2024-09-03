@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Container, Grid, Title, Text } from "@mantine/core";
 import DoctorCard from "../components/DoctorCard";
 import { useFetchDoctors } from "../hooks/useFetchDoctors";
