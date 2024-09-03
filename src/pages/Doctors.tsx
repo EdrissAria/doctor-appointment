@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Container, Grid, Title, Text } from "@mantine/core";
-import axios from "axios";
 import DoctorCard from "../components/DoctorCard";
-import Doctor from "../types";
+import { useFetchDoctors } from "../hooks/useFetchDoctors";
 
 const Doctors: React.FC = () => {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
-
-  useEffect(() => {
-    axios
-      .get<Doctor[]>("http://localhost:3333/api/doctors")
-      .then((response) => {
-        setDoctors(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching doctors:", error);
-      });
-  }, []);
+  const { doctors } = useFetchDoctors();
 
   return (
     <Container size="lg" py="xl">

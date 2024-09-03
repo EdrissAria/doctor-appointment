@@ -6,7 +6,7 @@ import notificationReducer from './notificationReducer';
 const rootReducer = combineReducers({
   appointments: appointmentsReducer,
   favoriteDoctors: favoriteDoctorsReducer,
-  Notifications: notificationReducer
+  notification: notificationReducer
 });
 
 export default rootReducer;

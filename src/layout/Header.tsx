@@ -59,7 +59,7 @@ const Header: React.FC = () => {
                   </Text>
                   <Text
                     onClick={() => {
-                      scrollTo({ y: 1700 });
+                      scrollTo({ y: 1600 });
                     }}
                     style={{ cursor: "pointer" }}
                     size="xl"
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
               </Text>
               <Text
                 onClick={() => {
-                  scrollTo({ y: 1700 });
+                  scrollTo({ y: 1600 });
                 }}
                 style={{ cursor: "pointer" }}
                 size="sm"

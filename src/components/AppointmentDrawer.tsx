@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { IconX, IconCheck } from '@tabler/icons-react';
 import {
   Drawer,
   Button,
@@ -7,49 +6,37 @@ import {
   Textarea,
   Select,
   Group,
-  Notification,
-  rem 
 } from "@mantine/core";
+import { useFetchDoctors } from "../hooks/useFetchDoctors";
 import { isEmail, isNotEmpty, useForm } from "@mantine/form";
 import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../redux/actions/appointmentActions";
-import axios from "axios";
 import Doctor, { Appointment } from "../types";
-import GlobalNotification from "./Notifications";
+import { showNotification } from "../redux/actions/notificationActions";
 
 const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
   opened,
   onClose,
 }) => {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const { doctors } = useFetchDoctors();
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
-  const [successNotification, setSuccessNotification] = useState(false);
-  const [errorNotification, setErrorNotification] = useState(false);
   const dispatch = useDispatch();
-  
-  const appointments: Appointment[] = useSelector((state: any) => state.appointments.appointments);
 
-  useEffect(() => {
-    axios
-      .get<Doctor[]>("http://localhost:3333/api/doctors")
-      .then((response) => {
-        setDoctors(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching doctors:", error);
-        setErrorNotification(true);
-      });
-  }, []);
+  const appointments: Appointment[] = useSelector(
+    (state: any) => state.appointments.appointments
+  );
 
   useEffect(() => {
     if (selectedDoctor) {
       const bookedSlots = appointments
-        .filter((appointment: any) => appointment.doctor.id === selectedDoctor.id)
+        .filter(
+          (appointment: any) => appointment.doctor.id === selectedDoctor.id
+        )
         .map((appointment: any) => appointment.timeSlot);
-        
+
       setTimeSlots(
-        selectedDoctor.availability.flatMap((slot) => 
+        selectedDoctor.availability.flatMap((slot) =>
           slot.slots
             .map((time) => `${slot.day} ${time}`)
             .filter((timeSlot) => !bookedSlots.includes(timeSlot))
@@ -94,13 +81,12 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
         doctor: selectedDoctor,
       };
       dispatch(addAppointment(appointment));
-      console.log("Form submitted:", appointment);
-      setSuccessNotification(true);
-      setErrorNotification(false);
+      dispatch(showNotification("Appointment booked successfully!", "success"));
+
+      onClose();
     } else {
-      form.setFieldError('doctor', 'Please select a doctor');
-      setErrorNotification(true);
-      setSuccessNotification(false);
+      form.setFieldError("doctor", "Please select a doctor");
+      dispatch(showNotification("Failed to book the appointment.", "error"));
     }
   };
 
@@ -151,7 +137,7 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
           onChange={(name) => {
             const doctor = doctors.find((d) => d.name === name);
             setSelectedDoctor(doctor || null);
-            form.setFieldValue('doctor', name!);
+            form.setFieldValue("doctor", name!);
           }}
           mt="md"
         />
@@ -172,22 +158,6 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
           </Button>
         </Group>
       </form>
-
-      {successNotification && (
-        <GlobalNotification
-        message="Appointment Added Successfully."
-        type="success"
-        onClose={() => setSuccessNotification(false)}
-      />
-      )}
-
-      {errorNotification && (
-        <GlobalNotification
-        message="Something went wrong, please check the details and try again."
-        type="error"
-        onClose={() => setErrorNotification(false)}
-      />
-      )}
     </Drawer>
   );
 };
