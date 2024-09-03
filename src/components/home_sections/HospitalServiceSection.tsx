@@ -1,7 +1,6 @@
 import { Container, Grid, Text, Title, List, Button } from '@mantine/core';
 import { IconCircleCheckFilled } from '@tabler/icons-react';
 import ServiceCard from '../ServiceCard';
-import { useRef } from 'react';
 
 const services = [
   {
@@ -27,10 +26,9 @@ const services = [
 ];
 
 const HospitalServiceSection: React.FC = () => {
-  const servicesRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Container size="xl" ref={servicesRef} p={50} style={{ backgroundColor: "#e8f8f5" }}>
+    <Container size="xl" p={50} style={{ backgroundColor: "#e8f8f5" }}>
       <Grid>
         <Grid.Col span={6}>
           <Text size="sm" color="teal">We provide</Text>

@@ -14,7 +14,7 @@ const GlobalNotification: React.FC = () => {
   const color = notification.type === "success" ? "teal" : "red";
 
   return (
-    <Group style={{ zIndex: 1000, position: 'fixed'}}>
+    <Group style={{ zIndex: 1000, position: 'fixed'}} m={20}>
       <Notification
         icon={icon}
         color={color}

@@ -1,26 +1,14 @@
 import { Container, Title, Text, Button, Flex, Anchor } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import DoctorCard from "../DoctorCard";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import Doctor from "../../types";
+import { useFetchDoctors } from "../../hooks/useFetchDoctors";
 
 const MeetDoctorsSection: React.FC = () => {
-  const doctorsRef = useRef<HTMLDivElement>(null);
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3333/api/doctors")
-      .then((response) => {
-        setDoctors(response.data.slice(0, 4));
-      })
-      .catch((error) => {
-        console.error("Error fetching doctors:", error);
-      });
-  }, []);
+  const { doctors } = useFetchDoctors();
 
   return (
-    <Container size="xl" p={50} ref={doctorsRef}>
+    <Container size="xl" p={50}>
       <Flex mb="lg" direction="row" justify="space-between">
         <div>
           <Text size="sm" color="dimmed">
@@ -47,7 +35,7 @@ const MeetDoctorsSection: React.FC = () => {
        loop
        controlsOffset="xl"
       >
-        {doctors.map((doctor) => (
+        {doctors.slice(0, 4).map((doctor: Doctor) => (
           <Carousel.Slide key={doctor.id}>
             <DoctorCard
               id={doctor.id}

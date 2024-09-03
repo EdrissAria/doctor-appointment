@@ -9,13 +9,11 @@ import {
   Group,
 } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
-import { useRef } from "react";
 
 const AboutHospitalSection: React.FC = () => {
-  const aboutRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Container p={50} ref={aboutRef}>
+    <Container p={50}>
       <Flex
         align="center"
         justify="space-between"
