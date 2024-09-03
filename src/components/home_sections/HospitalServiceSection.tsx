@@ -1,33 +1,36 @@
 import { Container, Grid, Text, Title, List, Button } from '@mantine/core';
 import { IconCircleCheckFilled } from '@tabler/icons-react';
 import ServiceCard from '../ServiceCard';
+import { useRef } from 'react';
 
 const services = [
   {
     title: "Expert Doctor",
     description: "You will often study doctors, but most doctors have extra expertise in a type of medicine or medicine-based field.",
-    icon: "🧑", // Replace with actual icons
+    icon: "🧑",
   },
   {
     title: "Medicine",
     description: "They care for people who are critically ill or injured.",
-    icon: "💊", // Replace with actual icons
+    icon: "💊",
   },
   {
     title: "Cardiology",
     description: "They’re experts on the heart and blood vessels.",
-    icon: "❤️", // Replace with actual icons
+    icon: "❤️",
   },
   {
     title: "Neurology",
     description: "They use X-rays, ultrasounds, and other imaging tech.",
-    icon: "🧠", // Replace with actual icons
+    icon: "🧠",
   },
 ];
 
 const HospitalServiceSection: React.FC = () => {
+  const servicesRef = useRef<HTMLDivElement>(null);
+
   return (
-    <Container size="xl" p={50} style={{ backgroundColor: "#e8f8f5" }}>
+    <Container size="xl" ref={servicesRef} p={50} style={{ backgroundColor: "#e8f8f5" }}>
       <Grid>
         <Grid.Col span={6}>
           <Text size="sm" color="teal">We provide</Text>

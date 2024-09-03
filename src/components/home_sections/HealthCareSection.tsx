@@ -1,6 +1,9 @@
 import { Box, Text, Title, Button, Group, Flex } from "@mantine/core";
+import { useWindowScroll } from "@mantine/hooks";
 
 const HealthCareSection: React.FC = () => {
+  const [_, scrollTo] = useWindowScroll();
+
   return (
     <Box
       style={{
@@ -42,16 +45,31 @@ const HealthCareSection: React.FC = () => {
                 color: "#006D64",
                 backgroundColor: "white",
               }}
+              onClick={() => {
+                scrollTo({ y: 600 });
+              }}
             >
               About Us
             </Button>
-            <Button variant="outline" radius={50} size="md" color="white">
+            <Button
+              onClick={() => {
+                scrollTo({ y: 1100 });
+              }}
+              variant="outline"
+              radius={50}
+              size="md"
+              color="white"
+            >
               Our Service
             </Button>
           </Group>
         </Group>
         <Group style={{ width: "100%", justifyContent: "center" }}>
-          <img src="images/doctor.png" width={500} style={{ maxWidth: "100%" }} />
+          <img
+            src="images/doctor.png"
+            width={500}
+            style={{ maxWidth: "100%" }}
+          />
         </Group>
       </Flex>
     </Box>

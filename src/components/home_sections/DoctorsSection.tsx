@@ -1,12 +1,12 @@
 import { Container, Title, Text, Button, Flex, Anchor } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import DoctorCard from "../DoctorCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Doctor from "../../types";
 
 const MeetDoctorsSection: React.FC = () => {
-
+  const doctorsRef = useRef<HTMLDivElement>(null);
   const [doctors, setDoctors] = useState<Doctor[]>([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const MeetDoctorsSection: React.FC = () => {
   }, []);
 
   return (
-    <Container size="xl" p={50}>
+    <Container size="xl" p={50} ref={doctorsRef}>
       <Flex mb="lg" direction="row" justify="space-between">
         <div>
           <Text size="sm" color="dimmed">

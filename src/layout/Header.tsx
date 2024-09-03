@@ -13,8 +13,11 @@ import {
 import { Link } from "react-router-dom";
 import AppointmentDrawer from "../components/AppointmentDrawer";
 import { useMediaQuery } from "@mantine/hooks";
+import { useWindowScroll } from "@mantine/hooks";
 
 const Header: React.FC = () => {
+  const [_, scrollTo] = useWindowScroll();
+
   const [drawerOpened, setDrawerOpened] = useState(false);
   const [appointmentDrawerOpened, setAppointmentDrawerOpened] = useState(false);
   const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
@@ -45,10 +48,22 @@ const Header: React.FC = () => {
                   <Text component={Link} size="xl" to="/">
                     Home
                   </Text>
-                  <Text component={Link} size="xl" to="/blog">
+                  <Text
+                    onClick={() => {
+                      scrollTo({ y: 2300 });
+                    }}
+                    style={{ cursor: "pointer" }}
+                    size="xl"
+                  >
                     Blog
                   </Text>
-                  <Text component={Link} size="xl" to="/doctors">
+                  <Text
+                    onClick={() => {
+                      scrollTo({ y: 1700 });
+                    }}
+                    style={{ cursor: "pointer" }}
+                    size="xl"
+                  >
                     Doctors
                   </Text>
                   <Text component={Link} size="xl" to="/profile">
@@ -72,10 +87,22 @@ const Header: React.FC = () => {
               <Text component={Link} size="sm" to="/">
                 Home
               </Text>
-              <Text component={Link} size="sm" to="/blog">
+              <Text
+                onClick={() => {
+                  scrollTo({ y: 2300 });
+                }}
+                style={{ cursor: "pointer" }}
+                size="sm"
+              >
                 Blog
               </Text>
-              <Text component={Link} size="sm" to="/doctors">
+              <Text
+                onClick={() => {
+                  scrollTo({ y: 1700 });
+                }}
+                style={{ cursor: "pointer" }}
+                size="sm"
+              >
                 Doctors
               </Text>
               <Text component={Link} size="sm" to="/profile">

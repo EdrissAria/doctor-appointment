@@ -18,7 +18,7 @@ const DoctorDetails: React.FC = () => {
         setDoctor(response.data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setError('Failed to fetch doctor details.');
         setLoading(false);
       });

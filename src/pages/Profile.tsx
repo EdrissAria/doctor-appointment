@@ -9,7 +9,7 @@ const Profile: React.FC = () => {
 
   const isUpcoming = (timeSlot: string) => {
     if (!timeSlot) return false;
-  
+    
     try {
       const now = new Date();
       const parts = timeSlot.split(' ');
@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
               <Stack>
                 <Title order={4}>Appointment Details</Title>
                 <Text>Time Slot: {appointment.timeSlot}</Text>
-                <Text>Description: {appointment.description}</Text>
+                <Text style={{wordBreak: 'break-word'}}>Description: {appointment.description}</Text>
               </Stack>
             </Grid.Col>
           </Grid>

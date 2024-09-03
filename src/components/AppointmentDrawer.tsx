@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IconX, IconCheck } from '@tabler/icons-react';
 import {
   Drawer,
   Button,
@@ -6,12 +7,15 @@ import {
   Textarea,
   Select,
   Group,
+  Notification,
+  rem 
 } from "@mantine/core";
 import { isEmail, isNotEmpty, useForm } from "@mantine/form";
 import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../redux/actions/appointmentActions";
 import axios from "axios";
 import Doctor, { Appointment } from "../types";
+import GlobalNotification from "./Notifications";
 
 const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
   opened,
@@ -20,10 +24,11 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
+  const [successNotification, setSuccessNotification] = useState(false);
+  const [errorNotification, setErrorNotification] = useState(false);
   const dispatch = useDispatch();
   
   const appointments: Appointment[] = useSelector((state: any) => state.appointments.appointments);
-
 
   useEffect(() => {
     axios
@@ -33,6 +38,7 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
       })
       .catch((error) => {
         console.error("Error fetching doctors:", error);
+        setErrorNotification(true);
       });
   }, []);
 
@@ -82,12 +88,20 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
   });
 
   const handleSubmit = (values: typeof form.values) => {
-    const appointment = {
-      ...values,
-      doctor: selectedDoctor,
-    };
-    dispatch(addAppointment(appointment));
-    console.log("Form submitted:", appointment);
+    if (selectedDoctor) {
+      const appointment: Appointment = {
+        ...values,
+        doctor: selectedDoctor,
+      };
+      dispatch(addAppointment(appointment));
+      console.log("Form submitted:", appointment);
+      setSuccessNotification(true);
+      setErrorNotification(false);
+    } else {
+      form.setFieldError('doctor', 'Please select a doctor');
+      setErrorNotification(true);
+      setSuccessNotification(false);
+    }
   };
 
   return (
@@ -158,6 +172,22 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
           </Button>
         </Group>
       </form>
+
+      {successNotification && (
+        <GlobalNotification
+        message="Appointment Added Successfully."
+        type="success"
+        onClose={() => setSuccessNotification(false)}
+      />
+      )}
+
+      {errorNotification && (
+        <GlobalNotification
+        message="Something went wrong, please check the details and try again."
+        type="error"
+        onClose={() => setErrorNotification(false)}
+      />
+      )}
     </Drawer>
   );
 };
