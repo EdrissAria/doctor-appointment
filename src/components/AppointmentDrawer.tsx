@@ -12,7 +12,7 @@ import { isEmail, isNotEmpty, useForm } from "@mantine/form";
 import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../redux/actions/appointmentActions";
 import Doctor, { Appointment } from "../types";
-import { showNotification } from "../redux/actions/notificationActions";
+// import { showNotification } from "../redux/actions/notificationActions";
 
 const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
   opened,
@@ -81,12 +81,12 @@ const AppointmentDrawer: React.FC<{ opened: boolean; onClose: () => void }> = ({
         doctor: selectedDoctor,
       };
       dispatch(addAppointment(appointment));
-      dispatch(showNotification("Appointment booked successfully!", "success"));
+      // dispatch(showNotification("Appointment booked successfully!", "success"));
 
       onClose();
     } else {
       form.setFieldError("doctor", "Please select a doctor");
-      dispatch(showNotification("Failed to book the appointment.", "error"));
+      // dispatch(showNotification("Failed to book the appointment.", "error"));
     }
   };
 

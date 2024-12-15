@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleFavoriteDoctor } from "../redux/actions/favoriteActions";
 import { Card, Image, Text, Button, Anchor } from "@mantine/core";
 import { IconStar, IconStarFilled } from "@tabler/icons-react";
-import { showNotification } from "../redux/actions/notificationActions";
+// import { showNotification } from "../redux/actions/notificationActions";
 
 interface DoctorCardProps {
   id: number;
@@ -32,9 +32,9 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
   const handleFavoriteToggle = () => {
     try{
       dispatch(toggleFavoriteDoctor(id));
-      dispatch(showNotification("Doctor Favorite Status Changed!", "success"));
+      // dispatch(showNotification("Doctor Favorite Status Changed!", "success"));
     }catch(e){
-      dispatch(showNotification("Failed to Change Favorite Status!", "error"));
+      // dispatch(showNotification("Failed to Change Favorite Status!", "error"));
     }
   };
 
