@@ -15,7 +15,7 @@ export default interface Doctor {
   }[];
 }
 
-export interface Appointment {
+export type Appointment = {
   firstName: string;
   lastName: string;
   email: string;
@@ -25,7 +25,7 @@ export interface Appointment {
   timeSlot: string;
 }
 
-export interface AppointmentsState {
+export type AppointmentsState = {
   appointments: Appointment[];
 }
 
@@ -37,7 +37,7 @@ export type AppointmentsAction = {
 export const SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
 export const HIDE_NOTIFICATION = "HIDE_NOTIFICATION";
 
-export interface ShowNotificationAction {
+export type ShowNotificationAction = {
   type: typeof SHOW_NOTIFICATION;
   payload: {
     message: string;
@@ -45,6 +45,6 @@ export interface ShowNotificationAction {
   };
 }
 
-export interface HideNotificationAction {
+export type HideNotificationAction = {
   type: typeof HIDE_NOTIFICATION;
 }

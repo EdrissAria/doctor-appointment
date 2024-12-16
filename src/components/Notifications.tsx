@@ -1,14 +1,11 @@
 import React from "react";
-import { 
-  useSelector, 
-  // useDispatch
- } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Notification, rem, Group } from "@mantine/core";
 import { IconX, IconCheck } from "@tabler/icons-react";
-// import { hideNotification } from "../redux/actions/notificationActions";
+import { hideNotification } from "../redux/actions/notificationActions";
 
 const GlobalNotification: React.FC = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const notification = useSelector((state: { notification: any }) => state.notification);
 
   if (!notification.visible) return null;
@@ -22,7 +19,7 @@ const GlobalNotification: React.FC = () => {
         icon={icon}
         color={color}
         title={notification.type === "success" ? "Success" : "Error"}
-        onClose={() => console.log('hide')}
+        onClose={() => dispatch(hideNotification())}
         withCloseButton
         radius="md"
         style={{

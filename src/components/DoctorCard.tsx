@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavoriteDoctor } from "../redux/actions/favoriteActions";
-import { Card, Image, Text, Button, Anchor } from "@mantine/core";
+import { Card, Image, Text, Button } from "@mantine/core";
 import { IconStar, IconStarFilled } from "@tabler/icons-react";
-// import { showNotification } from "../redux/actions/notificationActions";
+import { showNotification } from "../redux/actions/notificationActions";
+import { Link } from "react-router-dom";
 
 interface DoctorCardProps {
   id: number;
@@ -32,17 +33,16 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
   const handleFavoriteToggle = () => {
     try{
       dispatch(toggleFavoriteDoctor(id));
-      // dispatch(showNotification("Doctor Favorite Status Changed!", "success"));
+      dispatch(showNotification("Doctor Favorite Status Changed!", "success"));
     }catch(e){
-      // dispatch(showNotification("Failed to Change Favorite Status!", "error"));
+      dispatch(showNotification("Failed to Change Favorite Status!", "error"));
     }
   };
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Anchor
-        underline="never"
-        href={`/doctor/${id}`}
+      <Link
+        to={`/doctor/${id}`}
         style={{ color: "inherit", textDecoration: "none" }}
       >
         <Card.Section>
@@ -58,7 +58,7 @@ const DoctorCard: React.FC<DoctorCardProps> = ({
         <Text size="sm" mt="md" style={{ color: "inherit" }}>
           {description}
         </Text>
-      </Anchor>
+      </Link>
       {showFavIcon && (
         <Button
           variant="outline"

@@ -13,7 +13,7 @@ const DoctorDetails: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<Doctor>(`http://localhost:3333/api/doctors/${id}`)
+      .get<Doctor>(`https://doctor-appointment-api-gamma.vercel.app/api/doctors/${id}`)
       .then((response) => {
         setDoctor(response.data);
         setLoading(false);

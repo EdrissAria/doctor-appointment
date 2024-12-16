@@ -1,8 +1,9 @@
-import { Container, Title, Text, Button, Flex, Anchor } from "@mantine/core";
+import { Container, Title, Text, Button, Flex } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import DoctorCard from "../DoctorCard";
 import Doctor from "../../types";
 import { useFetchDoctors } from "../../hooks/useFetchDoctors";
+import { Link } from "react-router-dom";
 
 const MeetDoctorsSection: React.FC = () => {
   const { doctors } = useFetchDoctors();
@@ -23,7 +24,7 @@ const MeetDoctorsSection: React.FC = () => {
           </Text>
         </div>
         <Button variant="light" color="#006D64" radius={50}>
-          <Anchor href="/doctors" style={{color: '#006D64'}} underline="never">See all</Anchor>
+          <Link to="/doctors" style={{color: '#006D64', textDecoration:'none'}}>See all</Link>
         </Button>
       </Flex>
 
